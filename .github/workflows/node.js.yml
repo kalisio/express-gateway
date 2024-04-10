@@ -45,4 +45,5 @@ jobs:
     steps:
       - name: Display test logs
         run: |
-          ls /home/adam/.npm/_logs/*.log | xargs cat
+          cd 
+          ls .npm/_logs/*.log | xargs cat
