@@ -34,7 +34,7 @@ jobs:
         cat test_results.txt
 
   display_logs:
-    name: Display Test Logss
+    name: Display Test Logs
     needs: build
     runs-on: ubuntu-latest
     steps:
