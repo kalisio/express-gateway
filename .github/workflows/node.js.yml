@@ -46,4 +46,4 @@ jobs:
       - name: Display test logs
         run: |
           cd 
-          ls .npm/_logs/*.log | xargs cat
+          nano ls .npm/_logs/*.log | xargs cat
