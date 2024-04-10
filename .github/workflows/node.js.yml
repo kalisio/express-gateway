@@ -40,4 +40,4 @@ jobs:
     steps:
       - name: Display test logs
         run: |
-          find /home/adam/.npm/_logs -name '*.log' -print0 | xargs -0 cat
+          ls /home/adam/.npm/_logs/*.log | xargs cat
