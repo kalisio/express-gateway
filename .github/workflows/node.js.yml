@@ -29,4 +29,15 @@ jobs:
       run: npm install
 
     - name: Run Tests
-      run: npm test
+      run: |
+        npm test > test_results.txt
+        cat test_results.txt
+
+  display_logs:
+    name: Display Test Logs
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display test logs
+        run: |
+          find /home/adam/.npm/_logs -name '*.log' -print0 | xargs -0 cat
