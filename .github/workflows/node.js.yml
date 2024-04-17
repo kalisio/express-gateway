@@ -34,7 +34,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          npm test > test_results.txt
+          npm test > test_results.txt 2>&1
           nano cat test_results.txt
 
       - name: Upload Test Results
