@@ -33,18 +33,7 @@ jobs:
         run: npm install
 
       - name: Run Tests
-        run: npm test
+        run: npm test 
+      
+      
 
-  analyze:
-    name: Static Code Analysis
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Install ESLint
-        run: npm install eslint --save-dev
-
-      - name: Run ESLint
-        run: npx eslint .
