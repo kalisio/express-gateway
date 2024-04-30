@@ -22,8 +22,7 @@ jobs:
         node-version: [10.x, 12.x, 14.x, 16.x, 18.x]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -33,12 +32,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Tests and Capture Results
-        id: test
+      - name: Run Tests
         run: |
-          output=$(npm test)
-          echo "::set-output name=result::$(echo "$output" | grep -o '[0-9]* passing ([0-9]*m) [0-9]* failing')"
+          npm test > test-results.log
+          echo "Tests finished for Node.js version ${{ matrix.node-version }}"
 
-      - name: Display Test Results
-        run: |
-          echo "${{ steps.test.outputs.result }}"
+      - name: Extract and Save Test Results
+        run: ./extract_results.sh
+
