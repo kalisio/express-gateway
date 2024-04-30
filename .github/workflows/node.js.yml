@@ -33,4 +33,18 @@ jobs:
         run: npm install
 
       - name: Run Tests
-        run: npm test 
+        id: test
+        run: |
+          TEST_RESULTS=$(npm test)
+          echo "::set-output name=test-results::$TEST_RESULTS"
+
+      - name: Parse Test Results
+        id: parse-results
+        run: |
+          FAILING_TESTS=$(echo "$TEST_RESULTS" | awk '/^ *[0-9]+ failing$/{print $1}')
+          echo "::set-output name=failing-tests::$FAILING_TESTS"
+
+      - name: Display Failing Tests
+        run: |
+          echo "Failing Tests:"
+          echo "${{ steps.parse-results.outputs.failing-tests }}"
