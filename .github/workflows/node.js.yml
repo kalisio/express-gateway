@@ -38,7 +38,8 @@ jobs:
           npm test || echo "Tests failed"
 
       - name: Upload Logs
+        if: always()  # Upload logs regardless of test outcome
         uses: actions/upload-artifact@v2
         with:
-          name: logs
+          name: logs-${{ matrix.node-version }}  # Use node version in artifact name
           path: /home/runner/.npm/_logs/*.log
