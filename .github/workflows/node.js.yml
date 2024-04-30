@@ -34,9 +34,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          npm test > test-results.log
-          echo "Tests finished for Node.js version ${{ matrix.node-version }}"
-
-      - name: Extract and Save Test Results
-        run: ./extract_results.sh
-
+          npm test > test_results_${{ matrix.node-version }}.txt  # Redirige la sortie des tests vers un fichier
+          exit_status=$?  # Récupère le code de sortie des tests
+          echo "Exit status: $exit_status"  # Affiche le code de sortie
+          exit $exit_status  # Sortie avec le code de sortie des tests
