@@ -34,12 +34,32 @@ jobs:
 
       - name: Run Tests
         id: test
-        run: |
-          npm test || echo "Tests failed"
+        run: npm test
 
       - name: Upload Logs
-        if: always()  # Upload logs regardless of test outcome
+        if: ${{ failure() }}  # Upload logs only if tests fail
         uses: actions/upload-artifact@v2
         with:
           name: logs-${{ matrix.node-version }}  # Use node version in artifact name
           path: /home/runner/.npm/_logs/*.log
+
+  finalize:
+    needs: build  # Ensure this runs after the build job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set CI status
+        if: failure()  # Mark the workflow as failed if any job failed
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const context = github.context;
+            const octokit = new github.getOctokit(context.token);
+            octokit.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: 'failure',
+              context: 'CI',
+              description: 'Tests failed'
+            });
