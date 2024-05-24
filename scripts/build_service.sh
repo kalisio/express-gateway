@@ -13,7 +13,7 @@ WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 ##
 
 PUBLISH=false
-CI_STEP_NAME="Build app"
+CI_STEP_NAME="Build service"
 while getopts "pr:" option; do
     case $option in
         p) # publish app

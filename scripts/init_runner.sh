@@ -11,7 +11,7 @@ THIS_DIR=$(dirname "$THIS_FILE")
 
 ### Github Actions
 
-init_github_build_app() {
+init_github_build_service() {
     install_reqs age sops
 }
 
