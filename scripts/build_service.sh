@@ -32,8 +32,6 @@ done
 ## Init workspace
 ##
 
-init_lib_infos "$ROOT_DIR"
-
 APP=$(get_json_value "$ROOT_DIR/package.json" "name")
 VERSION=$(get_json_value "$ROOT_DIR/package.json" "version")
 GIT_TAG=$(get_git_tag "$ROOT_DIR")
