@@ -37,7 +37,7 @@
     "pretest": "eslint .",
     "test": "npm run mocha:istanbul",
     "test:all": "cross-env EG_HTTP_PORT=0 EG_CONFIG_DIR=lib/config EG_DISABLE_CONFIG_WATCH=true mocha test",
-    "test:unit": "cross-env EG_HTTP_PORT=0 EG_CONFIG_DIR=lib/config EG_DISABLE_CONFIG_WATCH=true mocha \"./test/{,!(e2e)/**/}*.test.js\"",
+    "test:unit": "cross-env EG_HTTP_PORT=0 EG_CONFIG_DIR=lib/config EG_DISABLE_CONFIG_WATCH=true mocha inspect \"./test/{,!(e2e)/**/}*.test.js\"",
     "test:e2e": "mocha test/e2e",
     "mocha:istanbul": "nyc --reporter=lcov npm run test:all && nyc report --report=lcov > coverage.lcov && codecov"
   },
@@ -131,8 +131,8 @@
     "rimraf": "^3.0.0",
     "should": "^13.2.3",
     "sinon": "^7.4.2",
-    "supertest": "^4.0.2",
-    "supertest-session": "^4.0.0",
+    "supertest": "^7.0.0",
+    "supertest-session": "^5.0.1",
     "tmp": "^0.1.0",
     "yeoman-test": "^1.9.1"
   },
