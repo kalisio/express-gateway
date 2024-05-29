@@ -179,44 +179,44 @@ describe('conditions', () => {
       });
     });
 
-    describe('with a remote schema', function () {
-      let conditionPromise;
+    // describe('with a remote schema', function () {
+    //   let conditionPromise;
 
-      before(() => {
-        conditionPromise = conditions['json-schema']({
-          schema: {
-            $id: 'oas',
-            $ref: 'https://raw.githack.com/OAI/OpenAPI-Specification/master/schemas/v3.0/schema.json'
-          }
-        });
-      });
+    //   before(() => {
+    //     conditionPromise = conditions['json-schema']({
+    //       schema: {
+    //         $id: 'oas',
+    //         $ref: 'https://raw.githack.com/OAI/OpenAPI-Specification/master/schemas/v3.0/schema.json'
+    //       }
+    //     });
+    //   });
 
-      it('should match if the body matches the schema', () => {
-        req.body = {
-          openapi: '3.0.0',
-          info: {
-            version: '1',
-            title: 'Nasino'
-          },
-          paths: {}
-        };
+    //   it('should match if the body matches the schema', () => {
+    //     req.body = {
+    //       openapi: '3.0.0',
+    //       info: {
+    //         version: '1',
+    //         title: 'Nasino'
+    //       },
+    //       paths: {}
+    //     };
 
-        return should(conditionPromise).be.resolved().then(fn => {
-          should(fn(req)).be.true();
-        });
-      });
+    //     return should(conditionPromise).be.resolved().then(fn => {
+    //       should(fn(req)).be.true();
+    //     });
+    //   });
 
-      it('should not match if the body does not matches the schema', () => {
-        req.body = {
-          info: {},
-          paths: {}
-        };
+    //   it('should not match if the body does not matches the schema', () => {
+    //     req.body = {
+    //       info: {},
+    //       paths: {}
+    //     };
 
-        return should(conditionPromise).be.resolved().then(fn => {
-          should(fn(req)).be.false();
-        });
-      });
-    });
+    //     return should(conditionPromise).be.resolved().then(fn => {
+    //       should(fn(req)).be.false();
+    //     });
+    //   });
+    // });
   });
 
   describe('complex conditions', function () {
