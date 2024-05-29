@@ -18,7 +18,7 @@ describe('@modifier policy', () => {
 
       backendServerPort = ports[0];
 
-      expressApp.all('*', express.json(), express.urlencoded(), function (req, res) {
+      expressApp.all('*', express.json(), express.urlencoded({ extended: true }), function (req, res) {
         if (req.header('r-test')) {
           res.setHeader('r-test', req.header('r-test'));
         }
